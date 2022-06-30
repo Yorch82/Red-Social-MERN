@@ -36,21 +36,27 @@ const Register = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <input type="text" name="name" value={name} onChange={onChange} />
-      <input type="email" name="mail" value={mail} onChange={onChange} />
-      <input
-        type="password"
-        name="password"
-        value={password}
-        onChange={onChange}
-      />
-      <input
-        type="password"
-        name="password2"
-        value={password2}
-        onChange={onChange}
-      />
-      <button type="submit">Register</button>
+      <fieldset>
+      <legend>Legend</legend>
+      <div className="form-group">
+        <label className="col-form-label mt-4" for="inputDefault">Name</label>
+        <input type="text" name="name" value={name} onChange={onChange} className="form-control" placeholder="Your name here..." id="inputDefault" />
+      </div>
+        <div className="form-group">
+        <label for="exampleInputEmail1" className="form-label mt-4">Email address</label>
+        <input type="email" name="mail" value={mail} onChange={onChange}  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div className="form-group">
+        <label for="exampleInputPassword1" className="form-label mt-4">Password</label>
+        <input type="password" name="password" value={password} onChange={onChange} className="form-control" id="exampleInputPassword1" placeholder="Password" />
+      </div>
+      <div className="form-group">
+        <label for="exampleInputPassword1" className="form-label mt-4">Repeat Password</label>
+        <input type="password" name="password2" value={password2} onChange={onChange} className="form-control" id="exampleInputPassword1" placeholder="Password" />
+      </div>      
+      <button className="btn btn-primary" type="submit">Register</button>
+      </fieldset>
     </form>
   );
 };
