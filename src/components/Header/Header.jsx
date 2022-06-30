@@ -37,7 +37,7 @@ const Header = () => {
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Home<span class="visually-hidden">(current)</span>
+                Home<span className="visually-hidden">(current)</span>
               </Link>
             </li>
             <li className="nav-item"></li>

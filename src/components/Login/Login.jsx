@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { login } from "../../features/auth/authSlice";
-// import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login, reset } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.sass";
+import { notification } from "antd";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ const Login = () => {
     password: "",
   });
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { mail, password } = formData;
 
@@ -22,6 +23,8 @@ const Login = () => {
     }));
   };
 
+  const { isError, isSuccess, message } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
@@ -29,14 +32,20 @@ const Login = () => {
     dispatch(login(formData));
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     const foundToken = JSON.parse(localStorage.getItem('token'));
-  //     if (foundToken) {
-  //       navigate('/');
-  //     }
-  //   }, 2000);
-  // }, []);
+  useEffect(() => {
+    if (isError) {
+      notification.error({ message: "Error", description: message });
+    }
+
+    if (isSuccess) {
+      notification.success({ message: "Success", description: message });
+      setTimeout(() => {
+        navigate("/profile");
+      }, 2000);
+    }
+    dispatch(reset());
+    // eslint-disable-next-line
+  }, [isError, isSuccess, message]);
 
   return (
     <div className={styles.container}>
@@ -51,7 +60,6 @@ const Login = () => {
             className="form-control"
             id="floatingInput"
             placeholder="name@example.com"
-            
           />
           <label for="floatingInput">Email address</label>
         </div>
@@ -67,7 +75,9 @@ const Login = () => {
           />
           <label for="floatingPassword">Password</label>
         </div>
-        <button className="btn btn-primary" type="submit">Login</button>
+        <button className="btn btn-primary" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );
