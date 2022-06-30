@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/auth/authSlice";
-// import styles from "./Login.module.sass";
+// import { useNavigate } from 'react-router-dom';
+import styles from "./Login.module.sass";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ const Login = () => {
 
     password: "",
   });
+
+  // const navigate = useNavigate();
 
   const { mail, password } = formData;
 
@@ -26,8 +29,17 @@ const Login = () => {
     dispatch(login(formData));
   };
 
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     const foundToken = JSON.parse(localStorage.getItem('token'));
+  //     if (foundToken) {
+  //       navigate('/');
+  //     }
+  //   }, 2000);
+  // }, []);
+
   return (
-    <div >
+    <div className={styles.container}>
       <form className="form-group" onSubmit={onSubmit}>
         <label className="form-label mt-4">Rellena tus datos</label>
         <div className="form-floating mb-3">
