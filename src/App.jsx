@@ -6,8 +6,8 @@ import Register from "./components/Register/Register";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
+import PostDetail from "./components/Home/Posts/PostDetail/PostDetail";
 import "./styles.sass";
-
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/post/:_id" element={<PostDetail />} />
         </Routes>
       </BrowserRouter>
     </div>
