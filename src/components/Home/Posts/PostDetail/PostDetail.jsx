@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getById } from "../../../../features/posts/postsSlice";
+import { getById, reset } from "../../../../features/posts/postsSlice";
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Card } from 'antd';
 const { Meta } = Card;
@@ -11,9 +11,14 @@ const PostDetail = () => {
   const { _id } = useParams();
   const dispatch = useDispatch();
   const { post } = useSelector((state) => state.posts);
+  
+  const getPost = async (_id) => {
+    await dispatch(getById(_id));
+    dispatch(reset());
+  }
 
   useEffect(() => {
-    dispatch(getById(_id));    
+        getPost(_id);
     // eslint-disable-next-line
   }, []);    
   return (
@@ -25,7 +30,7 @@ const PostDetail = () => {
     cover={
       <img
         alt="avatar"
-        src= {API_URL + post.post.avatar}
+        src= {API_URL + post.post?.avatar}
       />
     }
     actions={[
@@ -36,8 +41,8 @@ const PostDetail = () => {
   >
     <Meta
       avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-      title={post.post.title}
-      description={post.post.content}
+      title={post.post?.title}
+      description={post.post?.content}
       
     />
   </Card>

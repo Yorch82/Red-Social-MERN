@@ -7,21 +7,54 @@ const initialState = {
   post: {},
 };
 
-export const getAll = createAsyncThunk("posts/getAll", async () => {
+
+export const getAll = createAsyncThunk("posts/getAll", async (thunkAPI) => {
   try {
     return await postsService.getAll();
   } catch (error) {
-    console.error(error);
+    const message = error.response.data;
+    return thunkAPI.rejectWithValue(message);
   }
 });
 
-export const getById = createAsyncThunk("posts/getById", async (_id) => {
+export const getById = createAsyncThunk("posts/getById", async (_id, thunkAPI) => {
   try {
     return await postsService.getById(_id);
   } catch (error) {
-    console.error(error);
+    const message = error.response.data;
+    return thunkAPI.rejectWithValue(message);
   }
 });
+
+export const getPostByName = createAsyncThunk(
+  "posts/getByName",
+  async (postTitle, thunkAPI) => {
+    try {
+      return await postsService.getPostByName(postTitle);
+    } catch (error) {
+      const message = error.response.data;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const deletePost = createAsyncThunk("posts/deletePost", async (_id, thunkAPI) => {
+  try {
+    return await postsService.deletePost(_id);
+  } catch (error) {
+    const message = error.response.data;
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
+export const createPost = createAsyncThunk("posts/createPost", async (post, thunkAPI) => {
+  try {
+    return await postsService.createPost(post);
+  } catch (error) {
+    const message = error.response.data;
+    return thunkAPI.rejectWithValue(message);
+  }
+})
 
 export const postsSlice = createSlice({
   name: "posts",
@@ -32,17 +65,28 @@ export const postsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getAll.fulfilled, (state, action) => {
+    builder
+    .addCase(getAll.fulfilled, (state, action) => {
       state.posts = action.payload;
-    });
-    builder.addCase(getAll.pending, (state) => {
+    })
+    .addCase(getAll.pending, (state) => {
       state.isLoading = true;
-    });
-    builder.addCase(getById.fulfilled, (state, action) => {
-      state.post = action.payload;      
-    });
-  },
-});
+    })
+    .addCase(getById.fulfilled, (state, action) => {
+      state.post = action.payload;
+    })
+    .addCase(getPostByName.fulfilled, (state, action) => {
+      state.posts = action.payload;
+    })
+    .addCase(deletePost.fulfilled, (state, action) => {      
+      state.posts = state.posts.filter(
+        (post) => post._id !== +action.payload._id)
+    })
+    .addCase(createPost.fulfilled, (state, action) => {
+      state.posts = [action.payload, ...state.posts]      
+    })
+  }
+})
 
 export const { reset } = postsSlice.actions;
 export default postsSlice.reducer;

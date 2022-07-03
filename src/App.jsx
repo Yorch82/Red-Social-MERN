@@ -7,7 +7,10 @@ import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
 import PostDetail from "./components/Home/Posts/PostDetail/PostDetail";
+import Search from "../src/components/Search/Search";
+import Admin from "./components/Admin/Admin";
 import "./styles.sass";
+
 
 function App() {
   return (
@@ -20,6 +23,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/post/:_id" element={<PostDetail />} />
+          <Route path="/search/:postTitle" element={<Search />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </div>
