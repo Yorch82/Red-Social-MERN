@@ -8,8 +8,8 @@ const PostAdmin = () => {
   const post = posts.map((post) => {
     return (
       <div className="post" key={post._id}>
-        <p>{post.title}</p>;
-        <button onClick={() => dispatch(deletePost(post._id))}>X</button>;
+        <p>{post.title}</p>
+        <button onClick={() => dispatch(deletePost(post._id))}>Delete Post</button>
       </div>
     );
   });

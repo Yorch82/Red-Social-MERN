@@ -26,7 +26,8 @@ import React from 'react';
 const Post = () => {
   const { posts } = useSelector((state) => state.posts);
   console.log(posts);
-  const post = posts?.map((post) => {
+  const post = posts.map((post) => {
+    console.log(post)
     return (
       <div className="post" key={post._id}>
         <Link to={"/post/" + post._id}>
