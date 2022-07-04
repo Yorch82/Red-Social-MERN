@@ -1,7 +1,8 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { like, dislike } from "./../../../../features/posts/postsSlice"
 import React from 'react';
-import { LikeOutlined, MessageOutlined } from '@ant-design/icons';
+import { HeartOutlined, HeartFilled,  MessageOutlined } from "@ant-design/icons";
 import { Avatar, List, Space } from 'antd';
 const API_URL = "http://localhost:8080";
 
@@ -12,18 +13,24 @@ const IconText = ({ icon, text }) => (
   </Space>
 );
 
-const Post = () => {
+const Post = (likes, _id) => {
   const { posts } = useSelector((state) => state.posts); 
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const data = posts.map((post) => ({
+        
     _id: post._id,
     title: post.title,
     avatar: post.avatar,
-    content: post.content
+    content: post.content,
+    likes: post.likes,
+    userAvatar: post.userId.avatar
   }));
   
+  const isAlreadyLiked = posts.likes?.includes(user?.user._id);
 
   return (
-    <div>
+    <div key={_id}>
       <List
         itemLayout="vertical"
         size="large"
@@ -43,11 +50,20 @@ const Post = () => {
           <List.Item
             key={item.title}
             actions={[
-              <IconText
-                icon={LikeOutlined}
-                text="156"
+              isAlreadyLiked ? (
+                <HeartFilled
+                style={{ fontSize: "20px", color: "#FF0000" }}                
+                text={item.likes?.lenght}
                 key="list-vertical-like-o"
-              />,
+                onClick={ () => dispatch(dislike(item._id))}
+              />
+              ) : (
+                <HeartOutlined                
+                text={item.likes?.lenght}
+                key="list-vertical-like-o"
+                onClick={ () => dispatch(like(item._id))}
+              />
+              ),
               <IconText
                 icon={MessageOutlined}
                 text="2"
@@ -63,9 +79,8 @@ const Post = () => {
             }
           >
             <List.Item.Meta
-              avatar={<Avatar src={API_URL + item.avatar} />}
-              title={<Link to={"/post/" + item._id}>{item.title}</Link>}
-              description={item.title}
+              avatar={<Avatar src={API_URL + item.userAvatar} />}
+              title={<Link to={"/post/" + item._id}>{item.title}</Link>}              
             />
             {item.content}
           </List.Item>

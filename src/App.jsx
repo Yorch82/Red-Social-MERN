@@ -8,6 +8,7 @@ import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
 import PostDetail from "./components/Home/Posts/PostDetail/PostDetail";
 import Search from "../src/components/Search/Search";
+import WelcomeHome from "./components/WelcomeHome/WelcomeHome";
 import Admin from "./components/Admin/Admin";
 import "./styles.sass";
 
@@ -18,7 +19,8 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<WelcomeHome />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />

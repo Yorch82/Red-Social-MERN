@@ -40,8 +40,27 @@ const createPost = async (post) => {
       authorization: user?.token,
     },
   });  
+  return res.data;  
+};
+
+const like = async (_id) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const res = await axios.put(API_URL + `/users/likes/${_id}`,{}, {
+      headers: {
+        authorization: user?.token
+      },
+    } );
   return res.data;
-  
+};
+
+const dislike = async (_id) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const res = await axios.put(API_URL + `/users/dislikes/${_id}`,{}, {
+      headers: {
+        authorization: user?.token
+      },
+    } );
+  return res.data;
 };
 
 const postsService = {
@@ -49,7 +68,9 @@ const postsService = {
   getById,
   getPostByName,
   deletePost,
-  createPost
+  createPost,
+  like,
+  dislike
 };
 
 export default postsService;
