@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/auth/authSlice";
+// import { useLocation } from 'react-router';
 import { notification } from "antd";
 import { useState } from "react";
 import {Input} from "antd";
@@ -11,6 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const [text, setText] = useState("");
+  // const { pathname } = useLocation();  
   const handleChange = (e) => {
     e.preventDefault();
     setText(e.target.value);    
@@ -18,6 +20,9 @@ const Header = () => {
       navigate('/search/'+ text);
     }    
   };
+  // if (pathname === '/'|| pathname === '/login' || pathname === '/register')
+  // return null;
+
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());

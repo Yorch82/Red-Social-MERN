@@ -19,7 +19,7 @@ const getById = async (_id) => {
 
 const getPostByName = async (postTitle) => {
   const res = await axios.get(API_URL + "/posts/getByName/" + postTitle);
-  return res.data;
+  return [res.data];
 };
 
 const deletePost = async (_id) => {

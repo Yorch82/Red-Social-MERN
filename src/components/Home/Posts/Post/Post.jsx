@@ -1,98 +1,77 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import React from 'react';
-// import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-// import { Avatar, List, Space } from 'antd';
+import { LikeOutlined, MessageOutlined } from '@ant-design/icons';
+import { Avatar, List, Space } from 'antd';
+const API_URL = "http://localhost:8080";
 
-// const data = Array.from({
-//   length: 23,
-// }).map((_, i) => ({
-//   href: 'https://ant.design',
-//   title: `ant design part ${i}`,
-//   avatar: 'https://joeschmoe.io/api/v1/random',
-//   description:
-//     'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-//   content:
-//     'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-// }));
-
-// const IconText = ({ icon, text }) => (
-//   <Space>
-//     {React.createElement(icon)}
-//     {text}
-//   </Space>
-// );
+const IconText = ({ icon, text }) => (
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
 
 const Post = () => {
-  const { posts } = useSelector((state) => state.posts);
-  console.log(posts);
-  const post = posts.map((post) => {
-    console.log(post)
-    return (
-      <div className="post" key={post._id}>
-        <Link to={"/post/" + post._id}>
-          <p>{post.title}</p>
-        </Link>
-      </div>
-    );
-  });
+  const { posts } = useSelector((state) => state.posts); 
+  const data = posts.map((post) => ({
+    _id: post._id,
+    title: post.title,
+    avatar: post.avatar,
+    content: post.content
+  }));
+  
 
   return (
-    // <div>
-    //   <List
-    //     itemLayout="vertical"
-    //     size="large"
-    //     pagination={{
-    //       onChange: (page) => {
-    //         console.log(page);
-    //       },
-    //       pageSize: 3,
-    //     }}
-    //     dataSource={data}
-    //     footer={
-    //       <div>
-    //         <b>ant design</b> footer part
-    //       </div>
-    //     }
-    //     renderItem={(item) => (
-    //       <List.Item
-    //         key={item.title}
-    //         actions={[
-    //           <IconText
-    //             icon={StarOutlined}
-    //             text="156"
-    //             key="list-vertical-star-o"
-    //           />,
-    //           <IconText
-    //             icon={LikeOutlined}
-    //             text="156"
-    //             key="list-vertical-like-o"
-    //           />,
-    //           <IconText
-    //             icon={MessageOutlined}
-    //             text="2"
-    //             key="list-vertical-message"
-    //           />,
-    //         ]}
-    //         extra={
-    //           <img
-    //             width={272}
-    //             alt="logo"
-    //             src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-    //           />
-    //         }
-    //       >
-    //         <List.Item.Meta
-    //           avatar={<Avatar src={item.avatar} />}
-    //           title={<a href={item.href}>{item.title}</a>}
-    //           description={item.description}
-    //         />
-    //         {item.content}
-    //       </List.Item>
-    //     )}
-    //   />
-    // </div>
-    <div>{post}</div>
+    <div>
+      <List
+        itemLayout="vertical"
+        size="large"
+        pagination={{
+          onChange: (page) => {
+            console.log(page);
+          },
+          pageSize: 4,
+        }}
+        dataSource={data}
+        footer={
+          <div>
+            <b>ant design</b> footer part
+          </div>
+        }        
+        renderItem={(item) => (
+          <List.Item
+            key={item.title}
+            actions={[
+              <IconText
+                icon={LikeOutlined}
+                text="156"
+                key="list-vertical-like-o"
+              />,
+              <IconText
+                icon={MessageOutlined}
+                text="2"
+                key="list-vertical-message"
+              />,
+            ]}
+            extra={
+              <img
+                width={272}
+                alt="logo"
+                src={API_URL + item.avatar}
+              />
+            }
+          >
+            <List.Item.Meta
+              avatar={<Avatar src={API_URL + item.avatar} />}
+              title={<Link to={"/post/" + item._id}>{item.title}</Link>}
+              description={item.title}
+            />
+            {item.content}
+          </List.Item>
+        )}
+      />
+    </div>    
   );
 };
 
