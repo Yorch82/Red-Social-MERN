@@ -113,14 +113,13 @@ export const postsSlice = createSlice({
         state.posts = [action.payload, ...state.posts];
       })
       .addCase(like.fulfilled, (state, action) => {
-        const products = state.posts.map((product) => {
-          if (product._id === action.payload._id) {
-            product = action.payload;          }
-
-          return product;
-        });
-
-        state.products = products;
+        const posts = state.posts.map((element) => {
+          if (element._id === action.payload._id) {
+            element = action.payload;
+          }
+          return element
+      })
+      state.posts = posts
       })
       .addCase(dislike.fulfilled, (state, action) => {
         const posts = state.posts.map((element) => {

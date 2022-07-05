@@ -27,8 +27,6 @@ const Post = (likes, _id) => {
     userAvatar: post.userId.avatar
   }));
   
-  const isAlreadyLiked = posts.likes?.includes(user?.user._id);
-
   return (
     <div key={_id}>
       <List
@@ -50,7 +48,7 @@ const Post = (likes, _id) => {
           <List.Item
             key={item.title}
             actions={[
-              isAlreadyLiked ? (
+              item.likes?.includes(user?.user._id) ? (
                 <HeartFilled
                 style={{ fontSize: "20px", color: "#FF0000" }}                
                 text={item.likes?.lenght}
