@@ -13,6 +13,7 @@ import "./styles.sass";
 import SignInSide from "./components/SignInSide/SignInSide";
 import PrivateZone from "./components/guards/PrivateZone";
 import AdminZone from "./components/guards/AdminZone";
+import NotFound from "./components/NotFound/NotFound";
 // import AppBar from "./components/AppBar/AppBar"
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/post/:_id" element={<PostDetail />} />
           <Route path="/search/:postTitle" element={<Search />} />
           <Route path="/admin" element={<AdminZone><Admin /></AdminZone>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
