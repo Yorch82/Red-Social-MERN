@@ -5,6 +5,8 @@ const initialState = {
   posts: [],
   isLoading: false,
   post: {},
+  formData: {},
+  userPosts: []
 };
 
 export const getAll = createAsyncThunk("posts/getAll", async (thunkAPI) => {
@@ -73,12 +75,23 @@ export const like = createAsyncThunk("post/like", async (_id, thunkAPI) => {
   }
 });
 
-export const dislike = createAsyncThunk("post/dislike", async (_id, thunkAPI) => {
+export const dislike = createAsyncThunk(
+  "post/dislike",
+  async (_id, thunkAPI) => {
+    try {
+      return await postsService.dislike(_id);
+    } catch (error) {
+      const message = error.response.data;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getInfo = createAsyncThunk("users/getInfo", async () => {
   try {
-    return await postsService.dislike(_id);
+    return await postsService.getInfo();
   } catch (error) {
-    const message = error.response.data;
-    return thunkAPI.rejectWithValue(message);
+    console.error(error);
   }
 });
 
@@ -117,18 +130,24 @@ export const postsSlice = createSlice({
           if (element._id === action.payload._id) {
             element = action.payload;
           }
-          return element
-      })
-      state.posts = posts
+          return element;
+        });
+        state.posts = posts;
       })
       .addCase(dislike.fulfilled, (state, action) => {
         const posts = state.posts.map((element) => {
           if (element._id === action.payload._id) {
             element = action.payload;
           }
-          return element
+          return element;
+        });
+        state.posts = posts;
       })
-      state.posts = posts
+      .addCase(getInfo.fulfilled, (state, action) => {
+        state.userPosts = action.payload;
+      })
+      .addCase(getInfo.pending, (state) => {
+        state.isLoading = true;
       })
   },
 });
