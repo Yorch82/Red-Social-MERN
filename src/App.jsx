@@ -8,8 +8,10 @@ import Profile from "./components/Profile/Profile";
 import PostDetail from "./components/Home/Posts/PostDetail/PostDetail";
 import Search from "../src/components/Search/Search";
 import Admin from "./components/Admin/Admin";
+import Footer from "./components/Footer/Footer"
 import "./styles.sass";
 import SignInSide from "./components/SignInSide/SignInSide";
+
 
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
           <Route path="/search/:postTitle" element={<Search />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );
