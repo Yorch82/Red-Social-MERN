@@ -87,11 +87,21 @@ export const dislike = createAsyncThunk(
   }
 );
 
-export const getInfo = createAsyncThunk("users/getInfo", async () => {
+export const getInfo = createAsyncThunk("users/getInfo", async (thunkAPI) => {
   try {
     return await postsService.getInfo();
   } catch (error) {
-    console.error(error);
+    const message = error.response.data;
+      return thunkAPI.rejectWithValue(message);
+  }
+});
+
+export const editPost = createAsyncThunk("post/editPost", async (post, thunkAPI) => {
+  try {
+    return await postsService.editPost(post);
+  } catch (error) {
+    const message = error.response.data;
+    return thunkAPI.rejectWithValue(message);
   }
 });
 
@@ -149,6 +159,15 @@ export const postsSlice = createSlice({
       .addCase(getInfo.pending, (state) => {
         state.isLoading = true;
       })
+      .addCase(editPost.fulfilled, (state, action) => {
+        const posts = state.posts.map((element) => {
+          if (element._id === action.payload.post._id) {
+            element = action.payload.post;
+          }
+          return element
+      })
+      state.posts = posts
+      })      
   },
 });
 
