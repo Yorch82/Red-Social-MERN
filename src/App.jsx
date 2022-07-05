@@ -11,6 +11,9 @@ import Admin from "./components/Admin/Admin";
 import Footer from "./components/Footer/Footer"
 import "./styles.sass";
 import SignInSide from "./components/SignInSide/SignInSide";
+import PrivateZone from "./components/guards/PrivateZone";
+import AdminZone from "./components/guards/AdminZone";
+// import AppBar from "./components/AppBar/AppBar"
 
 
 
@@ -23,10 +26,10 @@ function App() {
           <Route path="/" element={<SignInSide />} />
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />          
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<PrivateZone><Profile /></PrivateZone>} />
           <Route path="/post/:_id" element={<PostDetail />} />
           <Route path="/search/:postTitle" element={<Search />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<AdminZone><Admin /></AdminZone>} />
         </Routes>
         <Footer />
       </BrowserRouter>

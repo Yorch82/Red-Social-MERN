@@ -5,6 +5,7 @@ import { useLocation } from 'react-router';
 import { notification } from "antd";
 import { useState } from "react";
 import {Input} from "antd";
+import { Navigate } from "react-router-dom";
 // import styles from "./Header.module.sass";
 
 const Header = () => {
@@ -41,7 +42,7 @@ const Header = () => {
               </Link>
             </span>
             <span>
-              <Link className="nav-link" to="/" onClick={onLogout}>
+              <Link className="nav-link" to="/SignInSide" onClick={onLogout}>
                 Logout
               </Link>
             </span>
@@ -52,21 +53,22 @@ const Header = () => {
             {user.user.role === 'admin' ? <span><Link to="/admin">Admin</Link></span>:''}
           </>
         ) : (
-          <div className="collapse navbar-collapse" id="navbarColor01">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item"></li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  LOGIN
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/register">
-                  REGISTER
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <Navigate to="/SignInSide" />
+          // <div className="collapse navbar-collapse" id="navbarColor01">
+          //   <ul className="navbar-nav me-auto">
+          //     <li className="nav-item"></li>
+          //     <li className="nav-item">
+          //       <Link className="nav-link" to="/SignInSide">
+          //         LOGIN
+          //       </Link>
+          //     </li>
+          //     <li className="nav-item">
+          //       <Link className="nav-link" to="/register">
+          //         REGISTER
+          //       </Link>
+          //     </li>
+          //   </ul>
+          // </div>
         )}
       </div>
     </nav>
