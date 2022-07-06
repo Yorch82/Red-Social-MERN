@@ -63,8 +63,7 @@ const Profile = () => {
 
   const [formData, setFormData] = useState({
     title: "",
-    content: "",
-    
+    content: "",    
   });
 
   const { title, content } = formData;

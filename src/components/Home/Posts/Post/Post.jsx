@@ -17,8 +17,10 @@ const Post = (likes, _id) => {
   const { posts } = useSelector((state) => state.posts); 
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const data = posts.map((post) => ({
-        
+  const data = posts.map((post) =>     
+  // console.log(post.likes)
+    (
+      {        
     _id: post._id,
     title: post.title,
     avatar: post.avatar,
@@ -44,29 +46,36 @@ const Post = (likes, _id) => {
             <b>ant design</b> footer part
           </div>
         }        
-        renderItem={(item) => (
+        renderItem={(item) => (          
           <List.Item
             key={item.title}
             actions={[
               item.likes?.includes(user?.user._id) ? (
+                <>
                 <HeartFilled
                 style={{ fontSize: "20px", color: "#FF0000" }}                
-                text={item.likes?.lenght}
                 key="list-vertical-like-o"
                 onClick={ () => dispatch(dislike(item._id))}
               />
+              <span>{item.likes?.length}</span>
+              </>
               ) : (
+                <>
                 <HeartOutlined                
-                text={item.likes?.lenght}
+                text={item.likes?.length}
                 key="list-vertical-like-o"
                 onClick={ () => dispatch(like(item._id))}
               />
+              <span>{item.likes?.length}</span>
+              </>
               ),
-              <IconText
-                icon={MessageOutlined}
-                text="2"
-                key="list-vertical-message"
-              />,
+              
+              // <IconText
+              //   icon={HeartFilled}
+              //   style={{ fontSize: "20px", color: "#FF0000" }}  
+              //   text= {item.likes?.length}
+              //   key="list-vertical-message"
+              // />,
             ]}
             extra={
               <img
