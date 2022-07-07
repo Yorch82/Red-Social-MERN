@@ -13,7 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@mui/icons-material/Search';
+import {Input} from "antd";
+// import SearchIcon from '@mui/icons-material/Search';
 import { useLocation } from 'react-router-dom';
 import { Link, useNavigate } from "react-router-dom";
 import { styled, alpha } from '@mui/material/styles';
@@ -22,6 +23,7 @@ import { logout } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
 import { Navigate } from "react-router-dom";
+
 
 const pages = [''];
 
@@ -112,155 +114,144 @@ const ResponsiveAppBar = () => {
  return (
    <AppBar position='static'>
      <Container maxWidth='xl'>
-     {user ? (
-       <Toolbar disableGutters>
-         <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-         <Typography
-           variant='h6'
-           noWrap
-           component='a'
-           href='/home'
-           sx={{
-             mr: 2,
-             display: { xs: 'none', md: 'flex' },
-             fontFamily: 'monospace',
-             fontWeight: 700,
-             letterSpacing: '.3rem',
-             color: 'inherit',
-             textDecoration: 'none',
-           }}
-         >
-           Code my Meme
-         </Typography>
-
-         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-           <IconButton
-             size='large'
-             aria-label='account of current user'
-             aria-controls='menu-appbar'
-             aria-haspopup='true'
-             onClick={handleOpenNavMenu}
-             color='inherit'
-           >
-             <MenuIcon />
-           </IconButton>
-           <Menu
-             id='menu-appbar'
-             anchorEl={anchorElNav}
-             anchorOrigin={{
-               vertical: 'bottom',
-               horizontal: 'left',
-             }}
-             keepMounted
-             transformOrigin={{
-               vertical: 'top',
-               horizontal: 'left',
-             }}
-             open={Boolean(anchorElNav)}
-             onClose={handleCloseNavMenu}
+       {user ? (
+         <Toolbar disableGutters>
+           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+           <Typography
+             variant='h6'
+             noWrap
+             component='a'
+             href='/home'
              sx={{
-               display: { xs: 'block', md: 'none' },
+               mr: 2,
+               display: { xs: 'none', md: 'flex' },
+               fontFamily: 'monospace',
+               fontWeight: 700,
+               letterSpacing: '.3rem',
+               color: 'inherit',
+               textDecoration: 'none',
              }}
            >
-             {pages.map(page => (
-               <MenuItem key={page} onClick={handleCloseNavMenu}>
-                 <Typography textAlign='center'>{page}</Typography>
-               </MenuItem>
-             ))}
-           </Menu>
-         </Box>
-         <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-         <Typography
-           variant='h5'
-           noWrap
-           component='a'
-           href=''
-           sx={{
-             mr: 2,
-             display: { xs: 'flex', md: 'none' },
-             flexGrow: 1,
-             fontFamily: 'monospace',
-             fontWeight: 700,
-             letterSpacing: '.3rem',
-             color: 'inherit',
-             textDecoration: 'underline',
-           }}
-         >
-           LOGO
-         </Typography>
-         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-           {pages.map(page => (
-             <Button
-               key={page}
-               onClick={handleCloseNavMenu}
-               sx={{ my: 2, color: 'white', display: 'block' }}
+             Code my Meme
+           </Typography>
+
+           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+             <IconButton
+               size='large'
+               aria-label='account of current user'
+               aria-controls='menu-appbar'
+               aria-haspopup='true'
+               onClick={handleOpenNavMenu}
+               color='inherit'
              >
-               {page}
-             </Button>
-           ))}
-         </Box>
-         {user.user.role === 'admin' ? (
-           <span>
-             <Link to='/admin'>Admin</Link>
-           </span>
-         ) : (
-           ''
-         )}
-         <Box sx={{ flexGrow: 0 }}>
-           <Tooltip title='Open settings'>
-             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-               <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
+               <MenuIcon />
              </IconButton>
-           </Tooltip>
-           <Menu
-             sx={{ mt: '45px' }}
-             id='menu-appbar'
-             anchorEl={anchorElUser}
-             anchorOrigin={{
-               vertical: 'top',
-               horizontal: 'right',
+             <Menu
+               id='menu-appbar'
+               anchorEl={anchorElNav}
+               anchorOrigin={{
+                 vertical: 'bottom',
+                 horizontal: 'left',
+               }}
+               keepMounted
+               transformOrigin={{
+                 vertical: 'top',
+                 horizontal: 'left',
+               }}
+               open={Boolean(anchorElNav)}
+               onClose={handleCloseNavMenu}
+               sx={{
+                 display: { xs: 'block', md: 'none' },
+               }}
+             >
+               {pages.map(page => (
+                 <MenuItem key={page} onClick={handleCloseNavMenu}>
+                   <Typography textAlign='center'>{page}</Typography>
+                 </MenuItem>
+               ))}
+             </Menu>
+           </Box>
+           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+           <Typography
+             variant='h5'
+             noWrap
+             component='a'
+             href=''
+             sx={{
+               mr: 2,
+               display: { xs: 'flex', md: 'none' },
+               flexGrow: 1,
+               fontFamily: 'monospace',
+               fontWeight: 700,
+               letterSpacing: '.3rem',
+               color: 'inherit',
+               textDecoration: 'underline',
              }}
-             keepMounted
-             transformOrigin={{
-               vertical: 'top',
-               horizontal: 'right',
-             }}
-             open={Boolean(anchorElUser)}
-             onClose={handleCloseUserMenu}
            >
-             <MenuItem>
-               <Typography textAlign='center'>
-                 <Link to='/profile'>Profile</Link>
-               </Typography>
-             </MenuItem>
-             <MenuItem>
-               <Typography textAlign='center'>
-                 <Link to='/SignInSide' onClick={onLogout}>
-                   Logout
-                 </Link>
-               </Typography>
-             </MenuItem>
-           </Menu>
-         </Box>
-         <Box>
-           <Search>
-             <SearchIconWrapper>
-               <SearchIcon />
-             </SearchIconWrapper>
-             <StyledInputBase
-               
-               placeholder='Search…'
-               inputProps={{ 'aria-label': 'search' }}
-               name='text'
-               onChange={handleChange}
-              value={text}
-             />
-           </Search>
-         </Box>
-       </Toolbar>
+             LOGO
+           </Typography>
+           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+             {pages.map(page => (
+               <Button
+                 key={page}
+                 onClick={handleCloseNavMenu}
+                 sx={{ my: 2, color: 'white', display: 'block' }}
+               >
+                 {page}
+               </Button>
+             ))}
+           </Box>
+           {user.user.role === 'admin' ? (
+             <span>
+               <Link to='/admin'>Admin</Link>
+             </span>
+           ) : (
+             ''
+           )}
+           <Box sx={{ flexGrow: 0 }}>
+             <Tooltip title='Open settings'>
+               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                 <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
+               </IconButton>
+             </Tooltip>
+             <Menu
+               sx={{ mt: '45px' }}
+               id='menu-appbar'
+               anchorEl={anchorElUser}
+               anchorOrigin={{
+                 vertical: 'top',
+                 horizontal: 'right',
+               }}
+               keepMounted
+               transformOrigin={{
+                 vertical: 'top',
+                 horizontal: 'right',
+               }}
+               open={Boolean(anchorElUser)}
+               onClose={handleCloseUserMenu}
+             >
+               <MenuItem>
+                 <Typography textAlign='center'>
+                   <Link to='/profile'>Profile</Link>
+                 </Typography>
+               </MenuItem>
+               <MenuItem>
+                 <Typography textAlign='center'>
+                   <Link to='/SignInSide' onClick={onLogout}>
+                     Logout
+                   </Link>
+                 </Typography>
+               </MenuItem>
+             </Menu>
+           </Box>
+           <Box>
+           <Input onKeyUp={handleChange} placeholder="Search post..." name="text" />
+           </Box>
+             
+         </Toolbar>
        ) : (
-        <Navigate to="/" />
-        )}  
+         <Navigate to='/' />
+       )}
      </Container>
    </AppBar>
  );

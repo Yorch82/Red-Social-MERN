@@ -13,8 +13,7 @@ const Search = () => {
   };
   
   useEffect(() => {    
-    getData(postTitle);
-    console.log(postTitle)
+    getData(postTitle);   
   // eslint-disable-next-line  
   }, [postTitle]);
   
