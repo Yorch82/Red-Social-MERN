@@ -7,11 +7,12 @@ const NewPost = () => {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   const onSubmit = (e) => {
+    console.log(e.target.myFile.files[0])
     e.preventDefault();
     const formData = new FormData();
+    if(e.target.myFile.files[0]) formData.set('myFile', e.target.myFile.files[0]);
     formData.set("title", e.target.title.value);
-    formData.set("content", e.target.content.value);
-    console.log(formData)
+    formData.set("content", e.target.content.value);    
     dispatch(createPost(formData));
   };
 
@@ -33,9 +34,9 @@ const NewPost = () => {
           onSubmit={onSubmit}
           className="form card animate__animated animate__fadeIn"
         >
-          {/* <input type="file" name="imagePost"/> */}
-          <input type="text" placeholder="Título..." name="title" />
-          <input type="text" placeholder="Descripción..." name="content" />
+          <input type="file" name="myFile"/>
+          <input type="text" placeholder="Title..." name="title" />
+          <input type="text" placeholder="Description..." name="content" />
           <button type="submit">Añade una publicación</button>
         </form>
       </Modal>

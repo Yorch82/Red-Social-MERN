@@ -4,14 +4,14 @@ import { like, dislike } from "./../../../../features/posts/postsSlice"
 import React from 'react';
 import { HeartOutlined, HeartFilled,  MessageOutlined } from "@ant-design/icons";
 import { Avatar, List, Space } from 'antd';
-const API_URL = "http://localhost:8080";
+const API_URL = "http://localhost:8080/assets/";
 
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
+// const IconText = ({ icon, text }) => (
+//   <Space>
+//     {React.createElement(icon)}
+//     {text}
+//   </Space>
+// );
 
 const Post = (likes, _id) => {
   const { posts } = useSelector((state) => state.posts); 
@@ -26,7 +26,7 @@ const Post = (likes, _id) => {
     avatar: post.avatar,
     content: post.content,
     likes: post.likes,
-    userAvatar: post.userId.avatar
+    // userAvatar: post.userId.avatar
   }));
   
   return (
@@ -38,7 +38,7 @@ const Post = (likes, _id) => {
           onChange: (page) => {
             console.log(page);
           },
-          pageSize: 4,
+          pageSize: 10,
         }}
         dataSource={data}
         footer={
