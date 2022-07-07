@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { deletePost } from "../../../features/posts/postsSlice";
 const API_URL = "http://localhost:8080/assets/";
@@ -33,7 +34,7 @@ const PostAdmin = () => {
         </CardContent>
       </CardActionArea>
     </Card>
-        <button onClick={() => dispatch(deletePost(post._id))}>Delete Post</button>
+        <DeleteOutlined onClick={() => dispatch(deletePost(post._id))} />        
       </div>
     );
   });

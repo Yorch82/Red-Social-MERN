@@ -21,17 +21,20 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
-const API_URL = "http://localhost:8080";
+const API_URL = "http://localhost:8080/assets/";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.auth);
-  const { userPosts, posts } = useSelector((state) => state.posts);
+  const { userPosts, posts, post } = useSelector((state) => state.posts);
 
   const postIds = userPosts.postIds;
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
+
+  // const [form] = Dialog.useForm();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -49,6 +52,7 @@ const Profile = () => {
   useEffect(() => {
     getUserPosts();
     setFormData({ ...posts });
+    // form.setFieldsValue(post);
     // eslint-disable-next-line
   }, [posts]);
 
@@ -57,6 +61,7 @@ const Profile = () => {
   };
 
   const showModal = (_id) => {
+    console.log(_id)
     dispatch(getById(_id));
     handleClickOpen();
   };
@@ -87,46 +92,11 @@ const Profile = () => {
           <Link to={"/post/" + userPost._id}>
             <p>{userPost.title}</p>
           </Link>
-          <button onClick={() => deletePostNow(userPost._id)}>Borra</button>
-          <button onClick={() => showModal(userPost._id)}>Edita</button>
+          <DeleteOutlined onClick={() => dispatch(deletePostNow(userPost._id))} /> 
+          <EditOutlined onClick={() => showModal(userPost._id)} />          
         </div>
         <div>
-        <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Edit your post!</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Something wrong? Edit your post here!
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="title"
-              label="New Title"
-              type="text"
-              fullWidth
-              variant="standard"
-              onChange={onChange}
-              value={title}
-              name="title"
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="content"
-              label="New content"
-              type="text"
-              fullWidth
-              variant="standard"
-              onChange={onChange}
-              value={content}
-              name="content"
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={() =>{handleOk(userPost._id)} }>Update</Button>
-          </DialogActions>
-        </Dialog>
+        
       </div>
       </>
 
@@ -159,7 +129,42 @@ const Profile = () => {
         <h3>Posts</h3>
         <div>{userPost}</div>
       </div>
-      
+      <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Edit your post!</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Something wrong? Edit your post here!
+            </DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="title"
+              label="New Title"
+              type="text"
+              fullWidth
+              variant="standard"
+              onChange={onChange}
+              value={title}
+              name="title"
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="content"
+              label="New content"
+              type="text"
+              fullWidth
+              variant="standard"
+              onChange={onChange}
+              value={content}
+              name="content"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={() =>{handleOk(post.post._id)} }>Update</Button>
+          </DialogActions>
+        </Dialog>
     </>
   );
 };

@@ -133,7 +133,7 @@ export const postsSlice = createSlice({
         );
       })
       .addCase(createPost.fulfilled, (state, action) => {
-        state.posts = [...state.posts, action.payload ];
+        state.posts = [...state.posts, action.payload.post ];
       })
       .addCase(like.fulfilled, (state, action) => {
         const posts = state.posts.map((element) => {

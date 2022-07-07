@@ -23,7 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
 import { Navigate } from "react-router-dom";
 
-const pages = ['Posts'];
+const pages = [''];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -248,10 +248,12 @@ const ResponsiveAppBar = () => {
                <SearchIcon />
              </SearchIconWrapper>
              <StyledInputBase
+               
                placeholder='Search…'
                inputProps={{ 'aria-label': 'search' }}
                name='text'
-               onSubmit={handleChange}
+               onChange={handleChange}
+              value={text}
              />
            </Search>
          </Box>

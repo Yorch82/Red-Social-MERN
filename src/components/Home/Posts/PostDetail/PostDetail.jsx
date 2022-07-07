@@ -5,7 +5,7 @@ import { getById, reset } from "../../../../features/posts/postsSlice";
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Card } from 'antd';
 const { Meta } = Card;
-const API_URL = 'http://localhost:8080';
+const API_URL = 'http://localhost:8080/assets/';
 
 const PostDetail = () => {
   const { _id } = useParams();

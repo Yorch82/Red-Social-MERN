@@ -26,7 +26,7 @@ const Post = (likes, _id) => {
     avatar: post.avatar,
     content: post.content,
     likes: post.likes,
-    // userAvatar: post.userId.avatar
+    userAvatar: post.userId.avatar
   }));
   
   return (
