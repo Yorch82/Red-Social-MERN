@@ -3,12 +3,10 @@ import Posts from "./Posts/Posts";
 import NewPost from "./NewPost/NewPost";
 
 const Home = () => {
-  // const { loginData } = useSelector((state) => state.auth);
+
 
   return (
-    <div>
-      <h1>Home</h1>
-      {/* {loginData?.user ? <NewPost /> : null} */}
+    <div>      
       <NewPost/>
       <Posts />
     </div>

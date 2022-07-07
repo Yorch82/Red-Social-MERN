@@ -14,7 +14,6 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import InputBase from '@mui/material/InputBase';
 import {Input} from "antd";
-// import SearchIcon from '@mui/icons-material/Search';
 import { useLocation } from 'react-router-dom';
 import { Link, useNavigate } from "react-router-dom";
 import { styled, alpha } from '@mui/material/styles';
@@ -245,9 +244,8 @@ const ResponsiveAppBar = () => {
              </Menu>
            </Box>
            <Box>
-           <Input onKeyUp={handleChange} placeholder="Search post..." name="text" />
-           </Box>
-             
+             <Input onKeyUp={handleChange} placeholder="Search post..." name="text" />                      
+           </Box>             
          </Toolbar>
        ) : (
          <Navigate to='/' />
