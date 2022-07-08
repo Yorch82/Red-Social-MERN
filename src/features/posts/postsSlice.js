@@ -179,7 +179,7 @@ export const postsSlice = createSlice({
       state.posts = posts
       })
       .addCase(addComment.fulfilled, (state, action) => {
-        state.posts =  action.payload;
+        state.comments =  action.payload;
       })      
   },
 });

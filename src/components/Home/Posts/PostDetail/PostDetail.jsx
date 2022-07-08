@@ -15,24 +15,21 @@ const PostDetail = () => {
     await dispatch(getById(_id));
     dispatch(reset());
   }
-
+  const { comments }= useSelector((state) => state.posts);
+  
   useEffect(() => {
         getPost(_id);
     // eslint-disable-next-line
-  }, []);    
+  }, [comments]);    
 
-  console.log(post.post?.commentIds)
-  
-
-  return (
+ return (
     <div>
       <div>
         <Card
           style={{
             width: 300,
           }}
-          cover={<img alt='avatar' src={API_URL + post.post?.avatar} />}
-          
+          cover={<img alt='avatar' src={API_URL + post.post?.avatar} />}          
         >
           <Meta
             avatar={<Avatar src='https://joeschmoe.io/api/v1/random' />}
