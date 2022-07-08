@@ -5,8 +5,7 @@ const initialState = {
   posts: [],
   isLoading: false,
   post: {},
-  formData: {},
-  userPosts: [],
+  formData: {},  
   comments:[]
 };
 
@@ -115,6 +114,24 @@ export const addComment = createAsyncThunk("post/addComment", async (comment, th
   }
 });
 
+export const likeComment = createAsyncThunk("comment/like", async (_id, thunkAPI) => {
+  try {
+      return await postsService.likeComment(_id);
+  } catch (error) {
+      const message = error.response.data;
+      return thunkAPI.rejectWithValue(message);
+  }
+});
+
+export const dislikeComment = createAsyncThunk("comment/dislike", async (_id, thunkAPI) => {
+  try {
+      return await postsService.dislikeComment(_id);
+  } catch (error) {
+      const message = error.response.data;
+      return thunkAPI.rejectWithValue(message);
+  }
+});
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -164,7 +181,7 @@ export const postsSlice = createSlice({
         state.posts = posts;
       })
       .addCase(getInfo.fulfilled, (state, action) => {
-        state.userPosts = action.payload;
+        state.posts = action.payload;
       })
       .addCase(getInfo.pending, (state) => {
         state.isLoading = true;
@@ -180,7 +197,25 @@ export const postsSlice = createSlice({
       })
       .addCase(addComment.fulfilled, (state, action) => {
         state.comments =  action.payload;
-      })      
+      }) 
+      .addCase(likeComment.fulfilled, (state, action) => {
+        const comments = state.comments?.map((element) => {
+          if (element._id === action.payload._id) {
+            element = action.payload;
+          }
+          return element;
+        });
+        state.comments = comments;
+      })
+      .addCase(dislikeComment.fulfilled, (state, action) => {
+        const comments = state.comments.map((element) => {
+          if (element._id === action.payload._id) {
+            element = action.payload;
+          }
+          return element;
+        });
+        state.comments = comments;
+      })         
   },
 });
 

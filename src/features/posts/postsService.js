@@ -94,7 +94,29 @@ const addComment = async (comment) => {
   });
   console.log(res.data)
   return res.data;
-}
+};
+
+const likeComment = async (_id) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const res = await axios.put(API_URL + `/users/likeComment/${_id}`,{}, {
+      headers: {
+        authorization: user?.token
+      },
+    } );
+  return res.data;
+};
+
+const dislikeComment = async (_id) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const res = await axios.put(API_URL + `/users/dislikeComment/${_id}`,{}, {
+      headers: {
+        authorization: user?.token
+      },
+    } );
+  return res.data;
+};
+
+
 
 const postsService = {
   getAll,
@@ -106,7 +128,9 @@ const postsService = {
   dislike,
   getInfo,
   editPost,
-  addComment
+  addComment,
+  likeComment,
+  dislikeComment
 };
 
 export default postsService;
