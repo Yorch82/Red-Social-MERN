@@ -44,8 +44,7 @@ const PostDetail = () => {
       <div>
         <div>
          {
-            post.post?.commentIds &&  post.post?.commentIds.map((e) => {
-              console.log(e)
+            post.post?.commentIds &&  post.post?.commentIds.map((e) => {              
               return <h2 key={e._id}>                
                         {e.content}
                     </h2>;

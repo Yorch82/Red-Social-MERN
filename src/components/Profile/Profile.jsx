@@ -22,6 +22,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { ClosedCaptionDisabledOutlined } from "@mui/icons-material";
 
 const API_URL = "http://localhost:8080/assets/";
 
@@ -35,7 +36,14 @@ const Profile = () => {
   const [open, setOpen] = React.useState(false);
 
   // const [form] = Dialog.useForm();
+  const [formData, setFormData] = useState({
+    title: "",
+    content: "",    
+  });
 
+  const { title, content } = formData;
+
+ 
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -48,10 +56,11 @@ const Profile = () => {
     await dispatch(getInfo());
     dispatch(reset());
   };
+  
 
   useEffect(() => {
     getUserPosts();
-    setFormData({ ...posts });
+    
     // form.setFieldsValue(post);
     // eslint-disable-next-line
   }, [posts]);
@@ -60,18 +69,19 @@ const Profile = () => {
     dispatch(deletePost(_id));
   };
 
-  const showModal = (_id) => {
-    console.log(_id)
-    dispatch(getById(_id));
+  useEffect(() => {
+    setFormData({ 
+      title: post.post?.title,
+      content: post.post?.content,    
+     });
+  }, [post]); 
+
+  const showModal = async (_id) => { 
+    await dispatch(getById(_id));
     handleClickOpen();
   };
 
-  const [formData, setFormData] = useState({
-    title: "",
-    content: "",    
-  });
 
-  const { title, content } = formData;
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -83,6 +93,8 @@ const Profile = () => {
     dispatch(editPost({...formData, _id}));
     handleClose(false);
   };
+
+
 
   const userPost = postIds?.map((userPost) => {
     return (
