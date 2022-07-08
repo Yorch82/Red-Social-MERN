@@ -79,8 +79,7 @@ const Profile = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  const handleOk = (_id) => {
-    console.log(_id)
+  const handleOk = (_id) => {    
     dispatch(editPost({...formData, _id}));
     handleClose(false);
   };

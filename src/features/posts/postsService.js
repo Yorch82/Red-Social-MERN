@@ -73,8 +73,7 @@ const getInfo = async () => {
   return res.data
 };
 
-const editPost = async (post) => {
-  console.log(post)
+const editPost = async (post) => {  
   const user = JSON.parse(localStorage.getItem("user"));
   const res = await axios.put(API_URL + `/posts/update/${post._id}`, post, {
     headers: {
@@ -83,6 +82,19 @@ const editPost = async (post) => {
   });
   return res.data;
 };
+
+const addComment = async (comment) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const res = await axios.post(API_URL + '/comments/', comment,  {
+    headers: {
+      authorization: user?.token,
+      
+    },
+
+  });
+  console.log(res.data)
+  return res.data;
+}
 
 const postsService = {
   getAll,
@@ -93,7 +105,8 @@ const postsService = {
   like,
   dislike,
   getInfo,
-  editPost
+  editPost,
+  addComment
 };
 
 export default postsService;

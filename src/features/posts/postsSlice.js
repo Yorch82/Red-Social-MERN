@@ -6,7 +6,8 @@ const initialState = {
   isLoading: false,
   post: {},
   formData: {},
-  userPosts: []
+  userPosts: [],
+  comments:[]
 };
 
 export const getAll = createAsyncThunk("posts/getAll", async (thunkAPI) => {
@@ -105,6 +106,15 @@ export const editPost = createAsyncThunk("post/editPost", async (post, thunkAPI)
   }
 });
 
+export const addComment = createAsyncThunk("post/addComment", async (comment, thunkAPI) => {
+  try {
+    return await postsService.addComment(comment)
+  }catch (error) {
+    const message = error.response.data;
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -167,6 +177,9 @@ export const postsSlice = createSlice({
           return element
       })
       state.posts = posts
+      })
+      .addCase(addComment.fulfilled, (state, action) => {
+        state.posts =  action.payload;
       })      
   },
 });
