@@ -12,7 +12,7 @@ import AdminZone from "./components/guards/AdminZone";
 import NotFound from "./components/NotFound/NotFound";
 import AppBar from "./components/AppBar/AppBar"
 import "antd/dist/antd.css";
-// import "./styles.sass";
+import "./styles.scss";
 
 
 

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 import postsService from "./postsService";
 
 const initialState = {
@@ -132,6 +133,8 @@ export const dislikeComment = createAsyncThunk("comment/dislike", async (_id, th
   }
 });
 
+
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -155,9 +158,7 @@ export const postsSlice = createSlice({
         state.posts = action.payload;
       })
       .addCase(deletePost.fulfilled, (state, action) => {
-        state.posts = state.posts.filter(
-          (post) => post._id !== +action.payload._id
-        );
+        state.posts = state.posts.filter((post) => post._id !== +action.payload._id);
       })
       .addCase(createPost.fulfilled, (state, action) => {
         state.posts = [...state.posts, action.payload.post ];
@@ -215,7 +216,8 @@ export const postsSlice = createSlice({
           return element;
         });
         state.comments = comments;
-      })         
+      })
+               
   },
 });
 

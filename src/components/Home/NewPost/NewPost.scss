@@ -1,0 +1,27 @@
+@import "../../../colors.scss";
+
+.form {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+input {
+    background-color: $terciary-color;
+    width: 100%;
+    padding: 1em;
+    color: $secondary-color;
+    border-radius: .5em;
+    font-size: 1.3em;
+    margin: 1em 0 1em 0 !important;
+}
+
+button {
+    background-color: $primary-color;
+    padding: 10 1em;
+    
+}
+
+.ant-modal-content {
+    color: $primary-color;
+}

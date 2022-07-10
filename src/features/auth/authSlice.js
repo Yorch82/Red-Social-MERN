@@ -39,6 +39,15 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   }
 });
 
+export const updatePhoto = createAsyncThunk("users/updatePhoto", async (photo, thunkAPI) => {
+  try{
+    return await authService.updatePhoto(photo);
+  }catch (error) {
+      const message = error.response.data;
+      return thunkAPI.rejectWithValue(message);
+  }
+})
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -70,7 +79,10 @@ export const authSlice = createSlice({
       .addCase(register.rejected, (state, action) => {
         state.isError = true;
         state.message = action.payload;
-      });
+      })
+      .addCase(updatePhoto.fulfilled, (state, action) => {
+        state.user = action.payload;        
+      })
   },
 });
 export const {reset} = authSlice.actions;

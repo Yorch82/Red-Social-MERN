@@ -30,10 +30,22 @@ const logout = async () => {
   return res.data;
 }
 
+const updatePhoto = async (photo) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user)
+  const res = await axios.put(API_URL + '/users/updatePhoto', photo, {
+    headers: {
+      authorization: user?.token,
+    },
+  })
+  return res.data;
+}
+
 const authService = {
   register,
   login,
-  logout
+  logout,
+  updatePhoto
 };
 
 export default authService;

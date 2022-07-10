@@ -2,6 +2,7 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../../features/posts/postsSlice";
+import "./NewPost.scss";
 
 const NewPost = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const NewPost = () => {
     formData.set("title", e.target.title.value);
     formData.set("content", e.target.content.value);    
     dispatch(createPost(formData));
+    setVisible(false)
   };
 
   return (
@@ -27,7 +29,7 @@ const NewPost = () => {
         visible={visible}
         onOk={() => setVisible(false)}
         onCancel={() => setVisible(false)}
-        width={1000}
+        width={750}
         footer={null}
       >
         <form

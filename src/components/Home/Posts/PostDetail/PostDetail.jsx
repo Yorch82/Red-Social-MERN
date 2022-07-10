@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getById, reset,  dislikeComment, likeComment  } from "../../../../features/posts/postsSlice";
 import AddComment from "./AddComment/AddComment";
 import { Avatar, Card, Comment } from 'antd';
-import { HeartOutlined, HeartFilled } from "@ant-design/icons";
+import { HeartOutlined, HeartFilled, MessageOutlined } from "@ant-design/icons";
 // import { dislikeComment, likeComment } from "../../../../features/comments/commentsSlice";
 const { Meta } = Card;
 const API_URL = 'http://localhost:8080/assets/';
@@ -24,36 +24,43 @@ const PostDetail = () => {
         getPost(_id);
     // eslint-disable-next-line
   }, [comments]);    
-
+  console.log(post)
  return (
-    <div>
+    <>
       <div>
         <Card
           style={{
             width: 300,
           }}
-          cover={<img alt='avatar' src={API_URL + post.post?.avatar} />}          
+          cover={<img alt='avatar' src={API_URL + post.post?.avatar} />}
+          actions={[
+            <MessageOutlined />         
+            
+          ]}
+      
+                
         >
+           <span>{post.commentIds?.length}</span>
           <Meta
-            avatar={<Avatar src='https://joeschmoe.io/api/v1/random' />}
+            avatar={<Avatar src={API_URL + post.post?.userId.avatar} />}
             title={post.post?.title}
             description={post.post?.content}
           />
+          
         </Card>
       </div>
       <div>
         <div>
          {
             post.post?.commentIds &&  post.post?.commentIds.map((e) => {
-              const isAlreadyLiked = e.likes?.includes(user?.user._id)
-              // console.log(e)             
+              const isAlreadyLiked = e.likes?.includes(user?.user._id)                          
               return (
                 <div key={e._id}>
                   <Comment
                     author={<a>{e.userId?.name}</a>}
                     avatar={
                       <Avatar
-                        // src={API_URL + e.userId.avatar}
+                        src={API_URL + post.post?.userId.avatar}
                         alt='Your ugly face'
                       />
                     }
@@ -61,13 +68,17 @@ const PostDetail = () => {
                   />
                   {isAlreadyLiked ? (
                     <HeartFilled
+                      style={{ color: '#FF0000' }}
                       onClick={() => dispatch(dislikeComment(e._id))}
-                    />
+                    />                   
                   ) : (
                     <HeartOutlined
                       onClick={() => dispatch(likeComment(e._id))}
                     />
                   )}
+                  <span>{e.likes?.length}</span>
+                  <MessageOutlined />
+                  <span>{post.commentIds?.length}</span>
                 </div>
               );
             })            
@@ -75,7 +86,7 @@ const PostDetail = () => {
         </div>
         <AddComment postId = {_id}/>
       </div>
-    </div>
+    </>
   );
 };
 

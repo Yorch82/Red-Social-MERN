@@ -131,6 +131,7 @@ const postsService = {
   addComment,
   likeComment,
   dislikeComment
+  
 };
 
 export default postsService;
