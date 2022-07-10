@@ -31,21 +31,17 @@ const PostDetail = () => {
           style={{
             width: 300,
           }}
-          cover={<img alt='avatar' src={API_URL + post.post?.avatar} />}
-          actions={[
-            <MessageOutlined />         
-            
-          ]}
-      
+          cover={<img alt='avatar' src={API_URL + post.post?.avatar} />}    
                 
-        >
-           <span>{post.commentIds?.length}</span>
+          >
+          
           <Meta
             avatar={<Avatar src={API_URL + post.post?.userId.avatar} />}
             title={post.post?.title}
             description={post.post?.content}
-          />
-          
+            /> 
+            <MessageOutlined/>          
+            <span>{post.post?.commentIds?.length}</span>
         </Card>
       </div>
       <div>
@@ -76,8 +72,7 @@ const PostDetail = () => {
                     />
                   )}
                   <span>{e.likes?.length}</span>
-                  <MessageOutlined />
-                  <span>{post.commentIds?.length}</span>
+                  
                 </div>
               );
             })            

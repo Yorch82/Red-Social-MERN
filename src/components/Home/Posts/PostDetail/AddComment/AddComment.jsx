@@ -32,26 +32,32 @@ const AddComment = ({postId}) => {
     }
 
     return (
-        // <>
-        //     <h3>Add a comment...</h3>
-        //     <div>
-        //         <form onSubmit={onSubmit}>
-        //             <input type="text" name="content" value={comment} onChange={onChange} />
-        //                 <button type="submit">Send comment</button>
-        //         </form>
-        //     </div>
-        // </>
-    <>
-      <Form.Item>
-        <TextArea rows={4} onChange={onChange} value={comment} name="content" type="text"/>
-      </Form.Item>
-      <Form.Item>
-        <Button htmlType="submit"  onClick={onSubmit} type="primary">
-          Add Comment
-        </Button>
-      </Form.Item>
-    </>
-    )
+      <>
+        <Form.Item>
+          <TextArea
+            rows={4}
+            onChange={onChange}
+            value={comment}
+            name='content'
+            type='text'
+          />
+        </Form.Item>
+        <Form.Item>
+          <Button  onClick={onSubmit} type='submit'>
+            Add Comment
+          </Button>
+        </Form.Item>
+      </>
+//       <>
+//       <h3>Add a comment...</h3>
+//       <div>
+//           <form onSubmit={onSubmit}>
+//               <input type="text" name="content" value={comment} onChange={onChange} />
+//                   <button type="submit">Send comment</button>
+//           </form>
+//       </div>
+//   </>
+    );
 }
 
 export default AddComment;

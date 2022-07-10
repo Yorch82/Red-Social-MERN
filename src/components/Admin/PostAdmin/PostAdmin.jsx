@@ -1,3 +1,4 @@
+import './PostAdmin.scss'
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -24,7 +25,7 @@ const PostAdmin = () => {
               component='img'
               height='350'
               image={API_URL + post.avatar}
-              alt='green iguana'
+              alt='your post'
             />
             <CardContent>
               <Typography gutterBottom variant='h5' component='div'>
@@ -35,28 +36,30 @@ const PostAdmin = () => {
               </Typography>
             </CardContent>
           </CardActionArea>
-          {isAlreadyLiked ? (
-              <HeartFilled
-                className='heart'                
-                style={{ color: '#FF0000' }}
-                
+          <div className='iconContainer'>
+            <div className='avatar'>
+              <Avatar
+                src={
+                  <Image src={API_URL + user.user.avatar} style={{ width: 32 }} />
+                }
               />
-            ) : (
-              <HeartOutlined
-                className='heart'
-                
-              />
-            )}
-          <span>{post.likes?.length}</span>
-          <MessageOutlined />
-          <span>{post.commentIds?.length}</span>
-          <Avatar
-            src={
-              <Image src={API_URL + user.user.avatar} style={{ width: 32 }} />
-            }
-          />
+            </div>
+            <div className='icons'>
+              {isAlreadyLiked ? (
+                <HeartFilled className='heart' style={{ color: '#FF0000' }} />
+              ) : (
+                <HeartOutlined className='heart' />
+              )}
+              <span>{post.likes?.length}</span>
+              <MessageOutlined />
+              <span>{post.commentIds?.length}</span>
+            </div>    
+          </div>
         </Card>
-        <DeleteOutlined onClick={() => dispatch(deletePost(post._id))} />
+        <DeleteOutlined
+          className='papelera'
+          onClick={() => dispatch(deletePost(post._id))}
+        />
       </div>
     );
   });
