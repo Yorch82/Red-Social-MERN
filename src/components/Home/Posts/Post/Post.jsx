@@ -22,12 +22,12 @@ const Post = () => {
    
     const isAlreadyLiked = post.likes?.includes(user?.user._id);  
     return (
-      <div key={post._id} className="card">
-        <Card sx={{ maxWidth: 345 }}>
+      <div key={post._id} className='card'>
+        <Card sx={{ maxWidth: 600 }}>
           <CardActionArea>
             <CardMedia
               component='img'
-              height='350'
+              height='550'
               image={API_URL + post.avatar}
               alt='post meme'
             />
@@ -41,23 +41,35 @@ const Post = () => {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            {isAlreadyLiked ? (
-              <HeartFilled
-                className='heart'
-                onClick={() => dispatch(dislike(post._id))}
-                style={{ color: '#FF0000' }}
-                
-              />
-            ) : (
-              <HeartOutlined
-                className='heart'
-                onClick={() => dispatch(like(post._id))}
-              />
-            )}
-            <span>{post.likes?.length}</span>
-            <MessageOutlined />
-            <span>{post.commentIds?.length}</span>            
-            <Avatar src={<Image src={API_URL + user.user.avatar} style={{ width: 32 }} />} />
+            <div className='iconContainer'>
+              <div className='avatar'>
+                <Avatar
+                  src={
+                    <Image
+                      src={API_URL + user.user.avatar}
+                      style={{ width: 35 }}
+                    />
+                  }
+                />
+              </div>
+              <div className='icons'>
+                {isAlreadyLiked ? (
+                  <HeartFilled
+                    className='heart'
+                    onClick={() => dispatch(dislike(post._id))}
+                    style={{ color: '#FF0000' }}
+                  />
+                ) : (
+                  <HeartOutlined
+                    className='heart'
+                    onClick={() => dispatch(like(post._id))}
+                  />
+                )}
+                <span>{post.likes?.length}</span>
+                <MessageOutlined />
+                <span>{post.commentIds?.length}</span>
+              </div>
+            </div>
           </CardActions>
         </Card>
       </div>

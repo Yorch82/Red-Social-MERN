@@ -4,7 +4,7 @@ import { getAll, reset } from "../../features/posts/postsSlice";
 import { useEffect } from "react";
 
 const Admin = () => {
-  const { isLoading } = useSelector((state) => state.posts);
+  const { isLoading, posts } = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ const Admin = () => {
   }
 
   return (
-    <div>
+    <div className="adminContainer">
       <h1>Admin</h1>
 
       <PostAdmin />

@@ -1,5 +1,5 @@
 import { Button, Modal } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../../features/posts/postsSlice";
 import "./NewPost.scss";
@@ -18,6 +18,7 @@ const NewPost = () => {
     setVisible(false)
   };
 
+  
   return (
     <>
       <Button type="primary" onClick={() => setVisible(true)}>
@@ -34,7 +35,7 @@ const NewPost = () => {
       >
         <form
           onSubmit={onSubmit}
-          className="form card animate__animated animate__fadeIn"
+          className="form"
         >
           <input type="file" name="myFile"/>
           <input type="text" placeholder="Title..." name="title" />

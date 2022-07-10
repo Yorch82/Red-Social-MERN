@@ -1,0 +1,22 @@
+.profileContainer, .containerPost {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.uploadPhoto {
+    display: flex;
+    flex-direction: column;
+}
+
+.uploadPhoto input {
+    font-family: 'Victor Mono';
+}
+
+.bin_like_icons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+

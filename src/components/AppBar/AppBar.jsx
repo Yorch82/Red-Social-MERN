@@ -1,3 +1,4 @@
+import './AppBar.scss'
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,17 +13,15 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import InputBase from '@mui/material/InputBase';
 import {Input} from "antd";
 import { useLocation } from 'react-router-dom';
 import { Link, useNavigate } from "react-router-dom";
-import { styled, alpha } from '@mui/material/styles';
 import { useState } from "react";
 import { logout } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
 import { Navigate } from "react-router-dom";
-
+const API_URL = "http://localhost:8080/assets/";
 
 const pages = [''];
 
@@ -66,7 +65,7 @@ const ResponsiveAppBar = () => {
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    notification.success({ message: "Te piras" });
+    notification.success({ message: "Get the F*@!K out!!" });
     navigate("/");
   };
 
@@ -84,7 +83,7 @@ const ResponsiveAppBar = () => {
              sx={{
                mr: 2,
                display: { xs: 'none', md: 'flex' },
-               fontFamily: 'monospace',
+               fontFamily: 'Victor Mono',
                fontWeight: 700,
                letterSpacing: '.3rem',
                color: 'inherit',
@@ -140,14 +139,14 @@ const ResponsiveAppBar = () => {
                mr: 2,
                display: { xs: 'flex', md: 'none' },
                flexGrow: 1,
-               fontFamily: 'monospace',
+               fontFamily: 'Victor Mono',
                fontWeight: 700,
                letterSpacing: '.3rem',
                color: 'inherit',
                textDecoration: 'underline',
              }}
            >
-             LOGO
+             Code my Meme
            </Typography>
            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
              {pages.map(page => (
@@ -161,7 +160,7 @@ const ResponsiveAppBar = () => {
              ))}
            </Box>
            {user.user.role === 'admin' ? (
-             <span>
+             <span className='admin'>
                <Link to='/admin'>Admin</Link>
              </span>
            ) : (
@@ -170,7 +169,7 @@ const ResponsiveAppBar = () => {
            <Box sx={{ flexGrow: 0 }}>
              <Tooltip title='Open settings'>
                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                 <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
+                 <Avatar alt='Remy Sharp' src={API_URL + user.user?.avatar} />
                </IconButton>
              </Tooltip>
              <Menu
@@ -204,7 +203,7 @@ const ResponsiveAppBar = () => {
              </Menu>
            </Box>
            <Box>
-             <Input onKeyUp={handleChange} placeholder="Search post..." name="text" />                      
+             <Input className='inputBar' onKeyUp={handleChange} placeholder="Search post..." name="text" />                      
            </Box>             
          </Toolbar>
        ) : (

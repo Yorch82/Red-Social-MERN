@@ -1,0 +1,16 @@
+.MuiBox-root {
+    margin-left: 1em;
+}
+
+.admin a{
+    color: azure;
+    font-family: 'Victor Mono', Arial, sans-serif;
+}
+
+.MuiCardContent-root, .adminContainer  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;     
+}
+

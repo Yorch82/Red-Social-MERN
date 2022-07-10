@@ -1,3 +1,4 @@
+import './Profile.scss'
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -102,11 +103,11 @@ const Profile = () => {
     return (
       <>
         <div key={userPost._id}>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 700 }}>
             <CardMedia
               component='img'
               alt='your nosense meme'
-              height='450'              
+              height='700'              
               image={API_URL + userPost.avatar}
             />
             <CardContent>
@@ -135,19 +136,25 @@ const Profile = () => {
             <span>{userPost.commentIds?.length}</span>
             <Avatar src={<Image src={API_URL + user.user.avatar} style={{ width: 32 }} />} />
           </Card>
-          <DeleteOutlined
-            onClick={() => dispatch(deletePostNow(userPost._id))}
-          />
-          <EditOutlined onClick={() => showModal(userPost._id)} />
+          <div className='bin_like_icons'>
+            <DeleteOutlined
+            className='papelera'
+              onClick={() => dispatch(deletePostNow(userPost._id))}
+            />
+            <EditOutlined 
+            className='papelera'
+            onClick={() => showModal(userPost._id)} />
+
+          </div>
         </div>
-        <div></div>
+        
       </>
     );    
   });
 
   return (
     <>
-      <div>
+      <div className='profileContainer'>
         <h1>Profile</h1>
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia
@@ -173,13 +180,13 @@ const Profile = () => {
           <span>Comments {user.user?.commentIds.length}</span>
         </Card>
         <div>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className='uploadPhoto'>
           <input type="file" name="myFile"/>          
-          <button type="submit">cambia tu careto</button>
+          <button type="submit">Change your avatar!</button>
         </form>
         </div>
       </div>
-      <div>
+      <div className='containerPost'>
         <h3>Posts</h3>
         <div>{userPost}</div>
       </div>
