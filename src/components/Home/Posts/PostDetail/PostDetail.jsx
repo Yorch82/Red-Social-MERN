@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getById, reset,  dislikeComment, likeComment  } from "../../../../features/posts/postsSlice";
 import AddComment from "./AddComment/AddComment";
-import { Avatar, Card, Comment } from 'antd';
+import { Avatar, Card, Comment, Form, Input, Button } from 'antd';
 import { HeartOutlined, HeartFilled, MessageOutlined } from "@ant-design/icons";
 // import { dislikeComment, likeComment } from "../../../../features/comments/commentsSlice";
 const { Meta } = Card;
@@ -24,7 +24,6 @@ const PostDetail = () => {
         getPost(_id);
     // eslint-disable-next-line
   }, [comments]);    
-  console.log(post)
  return (
     <>
       <div>

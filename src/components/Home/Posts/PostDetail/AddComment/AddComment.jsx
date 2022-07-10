@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { addComment }from '../../../../../features/posts/postsSlice'
-
+import { Button, Form, Input } from 'antd';
+const { TextArea } = Input;
 
 const AddComment = ({postId}) => {
     
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setFormData((pre) => ({...pre, postId}))
-        
+        setFormData((pre) => ({...pre, postId}))        
     }, []);
 
     const [formData, setFormData] = useState({
@@ -32,15 +32,25 @@ const AddComment = ({postId}) => {
     }
 
     return (
-        <>
-            <h3>Add a comment...</h3>
-            <div>
-                <form onSubmit={onSubmit}>
-                    <input type="text" name="content" value={comment} onChange={onChange} />
-                        <button type="submit">Send comment</button>
-                </form>
-            </div>
-        </>
+        // <>
+        //     <h3>Add a comment...</h3>
+        //     <div>
+        //         <form onSubmit={onSubmit}>
+        //             <input type="text" name="content" value={comment} onChange={onChange} />
+        //                 <button type="submit">Send comment</button>
+        //         </form>
+        //     </div>
+        // </>
+    <>
+      <Form.Item>
+        <TextArea rows={4} onChange={onChange} value={comment} name="content" type="text"/>
+      </Form.Item>
+      <Form.Item>
+        <Button htmlType="submit"  onClick={onSubmit} type="primary">
+          Add Comment
+        </Button>
+      </Form.Item>
+    </>
     )
 }
 

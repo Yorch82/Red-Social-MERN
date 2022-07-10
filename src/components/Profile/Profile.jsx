@@ -121,15 +121,13 @@ const Profile = () => {
             </CardContent>
               {isAlreadyLiked ? (
               <HeartFilled
-                className='heart'
-                // onClick={() => dispatch(dislike(post._id))}
+                className='heart'               
                 style={{ color: '#FF0000' }}
                 
               />
             ) : (
               <HeartOutlined
-                className='heart'
-                // onClick={() => dispatch(like(post._id))}
+                className='heart'                
               />
             )}
             <span>{userPost.likes?.length}</span>
