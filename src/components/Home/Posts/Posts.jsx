@@ -1,9 +1,9 @@
+import './Posts.scss'
 import React, { useEffect } from "react";
 import Post from "./Post/Post";
 import { useDispatch, useSelector } from "react-redux";
 import { getAll, reset } from "../../../features/posts/postsSlice";
 import { LoadingOutlined } from "@ant-design/icons";
-import './Posts.scss'
 
 const Posts = () => {
   const dispatch = useDispatch();

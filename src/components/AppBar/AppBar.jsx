@@ -159,7 +159,7 @@ const ResponsiveAppBar = () => {
                </Button>
              ))}
            </Box>
-           {user.user.role === 'admin' ? (
+           {user.user?.role === 'admin' ? (
              <span className='admin'>
                <Link to='/admin'>Admin</Link>
              </span>

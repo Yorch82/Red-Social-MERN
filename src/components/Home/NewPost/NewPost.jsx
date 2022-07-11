@@ -1,5 +1,5 @@
 import { Button, Modal } from "antd";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../../features/posts/postsSlice";
 import "./NewPost.scss";
@@ -40,7 +40,7 @@ const NewPost = () => {
           <input type="file" name="myFile"/>
           <input type="text" placeholder="Title..." name="title" />
           <input type="text" placeholder="Description..." name="content" />
-          <button type="submit">Añade una publicación</button>
+          <button type="submit">Post!</button>
         </form>
       </Modal>
     </>    

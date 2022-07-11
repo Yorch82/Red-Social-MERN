@@ -1,0 +1,28 @@
+.detailContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2em 0 2em 0;
+}
+
+.commentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+}
+
+.ant-comment-inner {
+    background-color: #ffff;
+    width: 20em;
+    border-radius: 5px;
+}
+
+.ant-avatar{
+    margin-left: 1em;
+}
+
+.ant-comment-content-detail {
+    // margin-bottom: 1em;
+}

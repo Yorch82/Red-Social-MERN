@@ -63,15 +63,7 @@ const dislike = async (_id) => {
   return res.data;
 };
 
-const getInfo = async () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const res = await axios.get(API_URL + "/users/getInfo", {
-      headers: {
-          authorization: user?.token
-      }
-  });
-  return res.data
-};
+
 
 const editPost = async (post) => {  
   const user = JSON.parse(localStorage.getItem("user"));
@@ -80,7 +72,7 @@ const editPost = async (post) => {
       authorization: user?.token,
     },
   });
-  return res.data;
+  return [res.data];
 };
 
 const addComment = async (comment) => {
@@ -91,8 +83,7 @@ const addComment = async (comment) => {
       
     },
 
-  });
-  console.log(res.data)
+  });  
   return res.data;
 };
 
@@ -126,7 +117,7 @@ const postsService = {
   createPost,
   like,
   dislike,
-  getInfo,
+  
   editPost,
   addComment,
   likeComment,

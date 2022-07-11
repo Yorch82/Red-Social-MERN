@@ -1,9 +1,10 @@
+import './PostDetail.scss';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getById, reset,  dislikeComment, likeComment  } from "../../../../features/posts/postsSlice";
 import AddComment from "./AddComment/AddComment";
-import { Avatar, Card, Comment, Form, Input, Button } from 'antd';
+import { Avatar, Card, Comment } from 'antd';
 import { HeartOutlined, HeartFilled, MessageOutlined } from "@ant-design/icons";
 // import { dislikeComment, likeComment } from "../../../../features/comments/commentsSlice";
 const { Meta } = Card;
@@ -26,7 +27,7 @@ const PostDetail = () => {
   }, [comments]);    
  return (
     <>
-      <div>
+      <div className="detailContainer">
         <Card
           style={{
             width: 300,
@@ -44,18 +45,19 @@ const PostDetail = () => {
             <span>{post.post?.commentIds?.length}</span>
         </Card>
       </div>
-      <div>
+      <div className='commentContainer'>
         <div>
          {
             post.post?.commentIds &&  post.post?.commentIds.map((e) => {
+              console.log(e)
               const isAlreadyLiked = e.likes?.includes(user?.user._id)                          
               return (
                 <div key={e._id}>
                   <Comment
-                    author={<a>{e.userId?.name}</a>}
+                    author={<p>{post.post.userId?.name}</p>}
                     avatar={
                       <Avatar
-                        src={API_URL + post.post?.userId.avatar}
+                        src={API_URL + post.post.userId?.avatar}
                         alt='Your ugly face'
                       />
                     }
@@ -71,8 +73,7 @@ const PostDetail = () => {
                       onClick={() => dispatch(likeComment(e._id))}
                     />
                   )}
-                  <span>{e.likes?.length}</span>
-                  
+                  <span>{e.likes?.length}</span>                  
                 </div>
               );
             })            

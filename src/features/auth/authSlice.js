@@ -8,6 +8,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   message: "",
+  isLoading: false,
 };
 
 export const register = createAsyncThunk(
@@ -48,6 +49,15 @@ export const updatePhoto = createAsyncThunk("users/updatePhoto", async (photo, t
   }
 })
 
+export const getInfo = createAsyncThunk("users/getInfo", async (thunkAPI) => {
+  try {
+    return await authService.getInfo();
+  } catch (error) {
+    const message = error.response.data;
+      return thunkAPI.rejectWithValue(message);
+  }
+});
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -56,6 +66,11 @@ export const authSlice = createSlice({
       state.isError = false;
       state.isSuccess = false;
       state.message="";
+      
+    },
+    resetLoading: (state) => {
+      state.isLoading = false;     
+      
     }
   },
   extraReducers: (builder) => {
@@ -81,9 +96,15 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(updatePhoto.fulfilled, (state, action) => {
-        state.user = action.payload;        
+        state.user.user = action.payload;        
+      })
+      .addCase(getInfo.fulfilled, (state, action) => {
+        state.user.user = action.payload;
+      })
+      .addCase(getInfo.pending, (state) => {
+        state.isLoading = true;
       })
   },
 });
-export const {reset} = authSlice.actions;
+export const {reset, resetLoading} = authSlice.actions;
 export default authSlice.reducer;

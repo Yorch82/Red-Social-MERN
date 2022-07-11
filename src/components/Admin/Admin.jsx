@@ -4,7 +4,7 @@ import { getAll, reset } from "../../features/posts/postsSlice";
 import { useEffect } from "react";
 
 const Admin = () => {
-  const { isLoading, posts } = useSelector((state) => state.posts);
+  const { isLoading } = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
 

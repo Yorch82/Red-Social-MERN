@@ -87,14 +87,7 @@ export const dislike = createAsyncThunk(
   }
 );
 
-export const getInfo = createAsyncThunk("users/getInfo", async (thunkAPI) => {
-  try {
-    return await postsService.getInfo();
-  } catch (error) {
-    const message = error.response.data;
-      return thunkAPI.rejectWithValue(message);
-  }
-});
+
 
 export const editPost = createAsyncThunk("post/editPost", async (post, thunkAPI) => {
   try {
@@ -157,10 +150,11 @@ export const postsSlice = createSlice({
         state.posts = action.payload;
       })
       .addCase(deletePost.fulfilled, (state, action) => {
-        state.posts = state.posts.filter((post) => post._id !== +action.payload._id);
+        console.log(action.payload.post._id)
+        state.posts = state.posts.filter((post) => post._id !== +action.payload.post._id);
       })
       .addCase(createPost.fulfilled, (state, action) => {
-        state.posts = [...state.posts, action.payload.post ];
+        state.posts = [action.payload.post , ...state.posts ];
       })
       .addCase(like.fulfilled, (state, action) => {
         const posts = state.posts.map((element) => {
@@ -180,13 +174,8 @@ export const postsSlice = createSlice({
         });
         state.posts = posts;
       })
-      .addCase(getInfo.fulfilled, (state, action) => {
-        state.posts = action.payload;
-      })
-      .addCase(getInfo.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(editPost.fulfilled, (state, action) => {
+        
         const posts = state.posts.map((element) => {
           if (element._id === action.payload.post._id) {
             element = action.payload.post;
@@ -199,6 +188,7 @@ export const postsSlice = createSlice({
         state.comments =  action.payload;
       }) 
       .addCase(likeComment.fulfilled, (state, action) => {
+        console.log(state.comments)
         const comments = state.comments?.map((element) => {
           if (element._id === action.payload._id) {
             element = action.payload;

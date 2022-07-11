@@ -18,8 +18,7 @@ const Post = () => {
   const { posts } = useSelector(state => state.posts);
   const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
-  const post = posts.map(post => {
-   
+  const post = posts.map(post => {    
     const isAlreadyLiked = post.likes?.includes(user?.user._id);  
     return (
       <div key={post._id} className='card'>
@@ -41,18 +40,18 @@ const Post = () => {
             </CardContent>
           </CardActionArea>
           <CardActions>
-            <div className='iconContainer'>
-              <div className='avatar'>
+            <div className='contenedor'>
+              <div className='foto'>
                 <Avatar
                   src={
                     <Image
-                      src={API_URL + user.user.avatar}
-                      style={{ width: 35 }}
+                      src={API_URL + post?.userId.avatar}
+                      style={{ width: 60 }}
                     />
                   }
                 />
               </div>
-              <div className='icons'>
+              <div className='iconos'>
                 {isAlreadyLiked ? (
                   <HeartFilled
                     className='heart'
@@ -76,9 +75,9 @@ const Post = () => {
     );
   });
   return (
-    <>
+    
       <div className="post">{post}</div>
-    </>
+    
   );
 };
 

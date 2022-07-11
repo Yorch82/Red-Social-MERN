@@ -7,7 +7,7 @@
 }
 
 input {
-    background-color: $terciary-color;
+    background-color: $primary-color;
     width: 100%;
     padding: 1em;
     color: $secondary-color;
@@ -17,12 +17,13 @@ input {
 }
 
 button {
-    background-color: $primary-color;
+    // background-color: $secondary-color;
     padding: 10 1em;
     
 }
 
 .ant-modal-root {
-    font-family: 'BTmono', Arial, sans-serif; 
-    color: $primary-color;
+    font-family: 'Victor Mono', Arial, sans-serif; 
+    // color: $primary-color;
+    // background-color: aqua;
 }

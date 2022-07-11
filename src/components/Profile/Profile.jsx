@@ -3,7 +3,7 @@ import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {getInfo, reset, deletePost, getById, editPost} from "../../features/posts/postsSlice";
+import { reset, deletePost, getById, editPost} from "../../features/posts/postsSlice";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -16,7 +16,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { updatePhoto } from "../../features/auth/authSlice";
+import { updatePhoto, getInfo } from "../../features/auth/authSlice";
 import { Avatar, Image } from 'antd';
 import { HeartOutlined, HeartFilled, MessageOutlined, TeamOutlined, LikeOutlined} from "@ant-design/icons";
 import "antd/dist/antd.css";
@@ -26,7 +26,7 @@ const API_URL = "http://localhost:8080/assets/";
 const Profile = () => {
   const { user } = useSelector((state) => state.auth);
   const { posts, post } = useSelector((state) => state.posts);  
-  const postIds = posts.postIds;
+  const postIds = user.user.postIds;
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
@@ -55,12 +55,14 @@ const Profile = () => {
   
 
   useEffect(() => {
-    getUserPosts();    
+    getUserPosts();
+    dispatch(getInfo())    
     // eslint-disable-next-line
-  }, []);
+  }, [posts]);
 
-  const deletePostNow = (_id) => {
-    dispatch(deletePost(_id));
+  const deletePostNow = async(_id) => {
+  await  dispatch(deletePost(_id));
+    // dispatch(getInfo())
   };
 
   useEffect(() => {
@@ -154,7 +156,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className='profileContainer'>
+      <div key={user.user._id} className='profileContainer'>
         <h1>Profile</h1>
         <Card sx={{ maxWidth: 345 }}>
           <CardMedia

@@ -3,3 +3,24 @@
     font-family: 'Victor Mono', Arial, sans-serif;
 }
 
+.contenedor {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.foto {
+    padding: 5px 5px 0 0;
+    
+}
+
+.iconos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.anticon {
+    padding-top: 1em;
+}
+
