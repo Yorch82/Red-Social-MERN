@@ -79,7 +79,7 @@ const Register = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container className='regcont' component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{

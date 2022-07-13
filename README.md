@@ -56,53 +56,63 @@ Proyecto programado con Stack MERN.
 
 ## FrontEnd Red Social
 
-Las funcionalidades requeridas del proyecto son las siguientes:
+Las funcionalidades del proyecto son las siguientes:
 - Registro de usuarios.
 - Login de usuarios.
-- Publicar post con foto.
+- Publicar post.
 - Borrar o editar tus propios posts desde tu perfil.
 - Comentar posts.
 - Dar like a posts y/o comentarios.
 - Vista de admin donde borrar cualquier post.
+- Buscador de posts
+- Implementación de guards
+- El usuario puede subir fotos en los posts o cambiar su foto de perfil.
+- El usuario en su perfil puede ver el número de seguidores y número de a cuantos sigue
 
 
 ## GUÍA DE USO
 
 <br><br>
 
-Pantalla de inicio de la tienda
+Pantalla de login
 
 
-![!foto](./src/assets/home.png)
+![!foto](./src/assets/login.png)
 
 
 <br><br>
 
-El botón de Products en la barra de navegación nos muestra todos los productos disponibles en la tienda y la posibilidad de agregarlos al carrito o ver su valoración
-
-![foto](./src/assets/products.png)
-
-<br><br>
-
-Para poder comprar debes estar registrado y acceder a tu cuenta en Login y si no lo estás puedes registrarte desde el botón register
+Si no estás registrado puedes hacerlo en la pantalla de registro
 
 ![foto](./src/assets/register.png)
-![foto](./src/assets/login.png)
+
+<br><br>
+
+Una vez registrado y loggeado accedes a la vista principal de los posts publicados donde puedes darle like al que más te guste así como entrar en detalle del post y comentarlo
+
+![foto](./src/assets/mainpost.png)
+
 
 <br><br>
  
- Una vez hayas inciado sesión con tu cuenta te redigirá a la pantalla de tu perfil donde se muestran tanto tus datos como tus pedidos realizados.
+ Con el botón de share your meme podrás compartir tu meme más gracioso
 
-![foto](./src/assets/profile.png)
+![foto](./src/assets/post.png)
 
 <br><br>
 
-En el carrito verás los productos que hayas añadido y podrás finalizar la compra la cual se agregará a tu información de perfil.
+Si haces click sobre la foto de tu avatar podrás acceder a tu perfil o desconectarte de la sesión. En tu perfil podrás editar o borrar tu posts
 
-![foto](./src/assets/cart.png)
+![foto](./src/assets/profile1.png)
+![foto](./src/assets/profile2.png)
+
+<br><br>
+
+Si tienes privilegios de administrador tienes una vista donde poder borrar cualquier post que no cumpla las condiciones de la página.
+
+![foto](./src/assets/admin.png)
 
 
-<br>
 
 ### Instalación
 
@@ -133,6 +143,7 @@ En el carrito verás los productos que hayas añadido y podrás finalizar la com
 
 - [x] Redux
 - [x] Componentes
+- [x] Estados y ciclo de vida de componentes
 
 
 <!-- LICENCIA -->
