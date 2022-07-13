@@ -26,7 +26,7 @@ const Post = () => {
           <CardActionArea>
             <CardMedia
               component='img'
-              height='550'
+              height='750'              
               image={API_URL + post.avatar}
               alt='post meme'
             />
