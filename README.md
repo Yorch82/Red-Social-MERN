@@ -1,7 +1,7 @@
 <!-- LOGO -->
 
 <p align="center">
-  <img width="400" height="400" src='./src/assets/troll.jpg'>
+  <img width="400" height="200" src='./src/assets/meme.webp'>
 </p>
 
 <!-- INDICE -->
