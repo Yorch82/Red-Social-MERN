@@ -1,7 +1,7 @@
 <!-- LOGO -->
 
 <p align="center">
-  <img width="400" height="240" src='./src/assets/banner.jpg'>
+  <img width="400" height="400" src='./src/assets/troll.jpg'>
 </p>
 
 <!-- INDICE -->
@@ -30,7 +30,7 @@
 
 ## Introducción
 
-En este proyecto se unifica todo lo aprendido hasta ahora. Los alumnos desarrollarán un e-commerce donde los usuarios se registrarán, logearán , verán productos y crearán pedidos utilizando la API del e-commerce que crearon en el 1º Proyecto de backend.
+Este proyecto trata de realizar el Front de una red social en la que los usuarios se registrarán, logearán y publicarán utilizando la API de la red social.
 
 
 ### Tecnologías
@@ -39,34 +39,32 @@ Aquí presentamos las herramientas empleadas en este proyecto:
 
 - [SCSS](https://sass-lang.com/)
 - [React](https://es.reactjs.org/)
+- [Redux](https://es.redux.js.org/)
+- [Router](https://reactrouter.com/)
 - [JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)
 - [AntDesign](https://ant.design/)
-- [Axios](https://github.com/axios/axios)
+- [Material UI](https://mui.com)
 
 
 <!-- DESCRIPCION -->
 
 ## Descripción
 
-¿Cuáles son los principales objetivos de este proyecto?
-  -  Comprender cómo desarrollar una aplicación con React
-  -  Mejora tus habilidades de desarrollo web
-  -  Mejore sus habilidades de desarrollo de JavaScript
-  -  Aprender a usar Context
+Esta red social es una red hecha por y para programadores. En ella podrás compartir tus mejores memes del mundo de la programación. 
 
-## FrontEnd E-commerce
+Proyecto programado con Stack MERN.
 
-Una vez analizadas las necesidades del proyecto, se espera
-que el alumno desarrolle un frontend que sea capaz de lo siguiente:
+## FrontEnd Red Social
+
+Las funcionalidades requeridas del proyecto son las siguientes:
 - Registro de usuarios.
 - Login de usuarios.
-- Que se puedan ver los productos  y añadir al carrito de compra
-- Que se pueda crear pedidos
-- Que en tu perfil puedas ver tus datos
+- Publicar post con foto.
+- Borrar o editar tus propios posts desde tu perfil.
+- Comentar posts.
+- Dar like a posts y/o comentarios.
+- Vista de admin donde borrar cualquier post.
 
-Requisitos imprescindibles del proyecto:
-- Uso de ramas con git, cuando se termine el proyecto deberán quedar dos ramas la master o main y la develop.
-- Presentación de README excelente.
 
 ## GUÍA DE USO
 
@@ -111,10 +109,10 @@ En el carrito verás los productos que hayas añadido y podrás finalizar la com
 1. Para la instalación de la aplicación has de clonarte el siguiente repositorio:
 
    ```sh
-   git clone https://github.com/Vincecoorp21/frontend-ecommerce-2.0.git
+   git clone https://github.com/Yorch82/Red-Social-MERN.git
    ```
 
-2. Tambien has de instalar las dependencias del proyecto:
+2. Una vez clonado has de instalar las dependencias del proyecto:
    ```sh
    npm install
    ```
@@ -126,14 +124,14 @@ En el carrito verás los productos que hayas añadido y podrás finalizar la com
 4. Para que el proyecto funcione hay que instalar el Backend clonando el siguiente repositorio:
 
     ```sh
-   git clone https://github.com/Vincecoorp21/BackendOnlineShop.git
+   git clone https://github.com/Yorch82/Red-Social-Mongoose.git
    ```
 
 <!-- ROADMAP -->
 
 ## Experiencia
 
-- [x] Implementado context
+- [x] Redux
 - [x] Componentes
 
 
@@ -147,8 +145,6 @@ Este programa es de código abierto y puede ser utilizado por cualquier persona 
 
 ## Contacto
 
-Vicente - [gitHub](https://github.com/Vincecoorp21)
-
 Jorge - [gitHub](https://github.com/yorch82)
 
 <!-- CONCOCIMIENTOS -->
@@ -156,5 +152,5 @@ Jorge - [gitHub](https://github.com/yorch82)
 ## Conocimientos
 
 - [x] React
-- [x] SCSS
-- [x] Context
+- [x] Redux
+- [x] SASS
