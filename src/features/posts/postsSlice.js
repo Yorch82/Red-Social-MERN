@@ -149,8 +149,7 @@ export const postsSlice = createSlice({
       .addCase(getPostByName.fulfilled, (state, action) => {
         state.posts = action.payload;
       })
-      .addCase(deletePost.fulfilled, (state, action) => {
-        console.log(action.payload.post._id)
+      .addCase(deletePost.fulfilled, (state, action) => {       
         state.posts = state.posts.filter((post) => post._id !== +action.payload.post._id);
       })
       .addCase(createPost.fulfilled, (state, action) => {
@@ -187,8 +186,7 @@ export const postsSlice = createSlice({
       .addCase(addComment.fulfilled, (state, action) => {
         state.comments =  action.payload;
       }) 
-      .addCase(likeComment.fulfilled, (state, action) => {
-        console.log(state.comments)
+      .addCase(likeComment.fulfilled, (state, action) => {        
         const comments = state.comments?.map((element) => {
           if (element._id === action.payload._id) {
             element = action.payload;

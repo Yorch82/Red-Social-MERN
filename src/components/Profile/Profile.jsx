@@ -93,8 +93,7 @@ const Profile = () => {
   const onSubmit = (e) => {    
     e.preventDefault();    
     const formData = new FormData();
-    if(e.target.myFile.files[0]) formData.set('myFile', e.target.myFile.files[0]);
-    console.log(user)       
+    if(e.target.myFile.files[0]) formData.set('myFile', e.target.myFile.files[0]);           
     dispatch(updatePhoto(formData));    
   };
 
@@ -109,7 +108,7 @@ const Profile = () => {
             <CardMedia
               component='img'
               alt='your nosense meme'
-              height='700'              
+              height='700'
               image={API_URL + userPost.avatar}
             />
             <CardContent>
@@ -122,34 +121,40 @@ const Profile = () => {
                 {userPost.content}
               </Typography>
             </CardContent>
-              {isAlreadyLiked ? (
-              <HeartFilled
-                className='heart'               
-                style={{ color: '#FF0000' }}
-                
-              />
-            ) : (
-              <HeartOutlined
-                className='heart'                
-              />
-            )}
-            <span>{userPost.likes?.length}</span>
-            <MessageOutlined />
-            <span>{userPost.commentIds?.length}</span>
-            <Avatar src={<Image src={API_URL + user.user.avatar} style={{ width: 32 }} />} />
+            <div className='cont'>
+              <div className='pic'>
+                <Avatar
+                  src={
+                    <Image
+                      src={API_URL + user.user.avatar}
+                      style={{ width: 60 }}
+                    />
+                  }
+                />
+              </div>
+              <div className='corazon'>
+                {isAlreadyLiked ? (
+                  <HeartFilled className='heart' style={{ color: '#FF0000' }} />
+                ) : (
+                  <HeartOutlined className='heart' />
+                )}
+                <span>{userPost.likes?.length}</span>
+                <MessageOutlined />
+                <span>{userPost.commentIds?.length}</span>
+              </div>
+            </div>
           </Card>
           <div className='bin_like_icons'>
             <DeleteOutlined
-            className='papelera'
+              className='papelera'
               onClick={() => dispatch(deletePostNow(userPost._id))}
             />
-            <EditOutlined 
-            className='papelera'
-            onClick={() => showModal(userPost._id)} />
-
+            <EditOutlined
+              className='papelera'
+              onClick={() => showModal(userPost._id)}
+            />
           </div>
         </div>
-        
       </>
     );    
   });

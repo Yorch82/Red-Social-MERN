@@ -48,8 +48,7 @@ const PostDetail = () => {
       <div className='commentContainer'>
         <div>
          {
-            post.post?.commentIds &&  post.post?.commentIds.map((e) => {
-              console.log(e)
+            post.post?.commentIds &&  post.post?.commentIds.map((e) => {              
               const isAlreadyLiked = e.likes?.includes(user?.user._id)                          
               return (
                 <div key={e._id}>

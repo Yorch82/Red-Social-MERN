@@ -90,7 +90,7 @@ const ResponsiveAppBar = () => {
                textDecoration: 'none',
              }}
            >
-             Only Coder's
+             Code my Meme
            </Typography>
 
            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -146,7 +146,7 @@ const ResponsiveAppBar = () => {
                textDecoration: 'underline',
              }}
            >
-             Only Coder's
+             Code my Meme
            </Typography>
            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
              {pages.map(page => (
@@ -202,7 +202,7 @@ const ResponsiveAppBar = () => {
                </MenuItem>
              </Menu>
            </Box>
-           <Box>
+           <Box className='inputcont'>
              <Input className='inputBar' onKeyUp={handleChange} placeholder="Search post..." name="text" />                      
            </Box>             
          </Toolbar>

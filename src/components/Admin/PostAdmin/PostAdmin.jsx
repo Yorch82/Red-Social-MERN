@@ -8,16 +8,20 @@ import { CardActionArea } from '@mui/material';
 import { HeartFilled, MessageOutlined, DeleteOutlined, HeartOutlined} from "@ant-design/icons";
 import { Avatar, Image } from 'antd';
 import { useSelector, useDispatch } from "react-redux";
-import { deletePost } from "../../../features/posts/postsSlice";
+import { deletePost   } from "../../../features/posts/postsSlice";
+
 const API_URL = "http://localhost:8080/assets/";
+
+
 
 const PostAdmin = () => {
   const { posts } = useSelector((state) => state.posts);
   const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const post = posts.map((post) => {
-    const isAlreadyLiked = post.likes?.includes(user?.user._id);
-    return (
+  const isAlreadyLiked = post.likes?.includes(user?.user._id);
+ 
+  return (
       <div className='post' key={post._id}>
         <Card sx={{ maxWidth: 345 }}>
           <CardActionArea>
@@ -52,7 +56,10 @@ const PostAdmin = () => {
               )}
               <span>{post.likes?.length}</span>
               <MessageOutlined />
+              <div>
               <span>{post.commentIds?.length}</span>
+
+              </div>
             </div>    
           </div>
         </Card>

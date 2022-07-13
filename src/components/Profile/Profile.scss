@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
 .profileContainer, .containerPost {
     display: flex;
     flex-direction: column;
@@ -24,3 +30,21 @@
     font-family: 'Victor Mono';
 }
 
+.cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.corazon {
+    font-size: 20px;
+}
+
+.ant-image {
+    position: relative;
+}
+
+.anticon {
+    object-fit: cover;
+}

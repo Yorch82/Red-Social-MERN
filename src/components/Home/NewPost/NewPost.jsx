@@ -7,8 +7,7 @@ import "./NewPost.scss";
 const NewPost = () => {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
-  const onSubmit = (e) => {
-    console.log(e.target.myFile.files[0])
+  const onSubmit = (e) => {    
     e.preventDefault();
     const formData = new FormData();
     if(e.target.myFile.files[0]) formData.set('myFile', e.target.myFile.files[0]);
