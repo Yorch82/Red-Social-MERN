@@ -1,7 +1,7 @@
 <!-- LOGO -->
 
 <p align="center">
-  <img width="400" height="200" src='./src/assets/meme.webp'>
+  <img width="400" height="200" src='./src/assets/MemeCover.jpg'>
 </p>
 
 <!-- INDICE -->
